@@ -34,6 +34,13 @@ files and skills do.
 | `scripts/new-project.sh` | copies the templates into a repo and fills in the name |
 | `scripts/check-docs.py` | the gate: both READMEs, the switch links, the required sections, no secrets |
 
+## Adopted by
+
+| repo | what adopting it showed |
+|---|---|
+| [`pastebin-service`](https://github.com/mmallaki/pastebin-service) | a 459-line feature README that never said how to check the app still works; the gate had to learn to skip `backend/venv/` — thousands of third-party files produced four false "inline credential" hits |
+| [`netswitch`](https://github.com/mmallaki/netswitch) | a 16-line README hid the one fact that matters (the tool writes `sources.list`, which Ubuntu 24.04 no longer reads); the gate rejects double-brace placeholders, so a `docker info` Go-template expression has to be written as a `grep` |
+
 ## The rules behind the files
 
 1. **Two languages, two files.** `README.md` is English — it is what a visitor sees by default.
@@ -75,7 +82,13 @@ The script never overwrites an existing file; it copies what is missing and prin
 - a required section absent (what / run / verify)
 - a Mermaid block that the file opens and never closes
 - a `TODO` left in a heading, or an empty code fence
+- a double-brace placeholder left in a real doc — a `docker info --format` expression counts as one,
+  so write the `grep` form instead
 - a credential-looking string (`password = "…"`, `ghp_…`, `sk-…`) anywhere in tracked text
+
+It skips dependency trees (`venv`, `.venv`, `node_modules`, `dist`, `site-packages`, …): a gate that
+walks a virtualenv reports the libraries' secrets, not yours, and turns a 0.7-second check into 20
+seconds of false positives.
 
 It is deliberately shallow: it checks presence and shape, not truth. Truth is the reviewer's job.
 
