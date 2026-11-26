@@ -78,3 +78,6 @@ The script never overwrites an existing file; it copies what is missing and prin
 - a credential-looking string (`password = "…"`, `ghp_…`, `sk-…`) anywhere in tracked text
 
 It is deliberately shallow: it checks presence and shape, not truth. Truth is the reviewer's job.
+
+The same check runs on every push and pull request: `.github/workflows/docs.yml` (green on this
+repository).

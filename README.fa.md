@@ -84,3 +84,5 @@ cd ~/projects/my-project && python3 /tmp/standards/scripts/check-docs.py .
 - رشته‌ای که شبیه رمز است (`password = "…"`، `ghp_…`، `sk-…`) در هر متنِ ردیابی‌شده
 
 این گیت عمداً سطحی است: وجود و شکل را می‌سنجد، نه درستی را. درستی کار بازبین است.
+
+همین گیت روی هر push و pull request اجرا می‌شود: `.github/workflows/docs.yml` (روی همین مخزن سبز است).
