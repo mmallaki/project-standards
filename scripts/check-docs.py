@@ -29,7 +29,11 @@ SECRETS = [
 ]
 SECRET_SKIP = re.compile(r"(?i)example|placeholder|dummy|redacted|your[_-]|xxx|<[^>]+>|change[_-]?me")
 
-SKIP_DIRS = {".git", "node_modules", ".venv", "dist", "build", "__pycache__", ".verify"}
+SKIP_DIRS = {
+    ".git", "node_modules", ".venv", "venv", "env", "site-packages", "dist", "build",
+    "__pycache__", ".verify", ".pytest_cache", ".mypy_cache", ".tox", ".next", "target",
+    "vendor", ".cache",
+}
 
 
 def read(path: str) -> str:
